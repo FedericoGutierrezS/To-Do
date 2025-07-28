@@ -162,14 +162,16 @@ public class ToDoController{
 
     @FXML
     void deleteTask(ActionEvent event) {
-    	Button delBtn = (Button) event.getSource();
+       	Button delBtn = (Button) event.getSource();
     	HBox task = (HBox)delBtn.getParent();
     	Label taskLbl = (Label)task.getChildren().get(0);
     	Text taskTxt = (Text) taskLbl.getChildrenUnmodifiable().get(0);
-    	taskTxt.setStrikethrough(true);
-    	taskDoneCounter++;
-    	doneOverTotal.setText("" + taskDoneCounter + "/" + taskTotalCounter);
-    	
+    	if(!taskTxt.isStrikethrough()) {
+	    	taskTxt.setStrikethrough(true);
+	    	taskTxt.fillProperty().set(Color.GREY);
+	    	taskDoneCounter++;
+	    	doneOverTotal.setText("" + taskDoneCounter + "/" + taskTotalCounter);
+    	}
     }
     
     @FXML
