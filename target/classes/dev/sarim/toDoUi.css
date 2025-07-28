@@ -1,0 +1,33 @@
+
+.mainPane {
+	-fx-background-color: #333333;
+}
+
+.button{
+	-fx-background-color:transparent;
+}
+
+.mainTask{
+	-fx-border-color: white;
+	-fx-border-radius: 15px;
+	-fx-border-width: 1px;
+}
+
+.textField{
+	-fx-background-color: #666;
+}
+
+.scroll{
+	-fx-opacity: 60;
+	-fx-background-color: #444444;
+}
+
+.task{
+	-fx-border-color: #fff;
+	-fx-border-radius: 10px;
+	-fx-background-color: #333333;
+}
+
+.tasksPane{
+	-fx-background-color: #444444;
+}

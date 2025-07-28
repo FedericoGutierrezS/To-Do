@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.stage.*?>
+
+<Stage fx:id="primaryStage" title="ToDoApp" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.sarim.ToDoController">
+    <scene>
+        <Scene>
+         <BorderPane id="bp" fx:id="bp">
+            <center>
+                  <AnchorPane id="mainPane" prefHeight="600.0" prefWidth="400.0" styleClass="mainPane" stylesheets="@toDoUi.css">
+                  <children>
+                     <HBox alignment="CENTER" layoutX="8.0" layoutY="75.0" prefHeight="163.0" prefWidth="385.0" styleClass="mainTask" stylesheets="@toDoUi.css">
+                        <children>
+                           <Pane nodeOrientation="LEFT_TO_RIGHT" prefHeight="161.0" prefWidth="158.0">
+                              <children>
+                                 <ImageView id="ongoingTaskStatus" fx:id="ongoingTaskStatus" fitHeight="125.0" fitWidth="151.0" layoutX="6.0" layoutY="19.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@100%25.png" />
+                                    </image>
+                                 </ImageView>
+                                 <Label id="doneOverTotal" fx:id="doneOverTotal" alignment="CENTER" contentDisplay="CENTER" layoutX="12.0" layoutY="30.0" prefHeight="103.0" prefWidth="114.0" text="0/0" textFill="WHITE">
+                                    <font>
+                                       <Font name="Arial Bold" size="48.0" />
+                                    </font>
+                                 </Label>
+                              </children>
+                           </Pane>
+                           <Label id="OngoingTask" fx:id="OngoingTask" prefHeight="161.0" prefWidth="254.0" stylesheets="@toDoUi.css" text="Task Example Ongoing" textFill="WHITE">
+                              <font>
+                                 <Font name="Arial Bold" size="18.0" />
+                              </font>
+                           </Label>
+                        </children>
+                        <opaqueInsets>
+                           <Insets />
+                        </opaqueInsets>
+                        <padding>
+                           <Insets right="10.0" />
+                        </padding>
+                     </HBox>
+                     <Button layoutX="352.0" layoutY="2.0" mnemonicParsing="false" stylesheets="@toDoUi.css" />
+                     <Button layoutX="304.0" layoutY="2.0" mnemonicParsing="false" stylesheets="@toDoUi.css" />
+                     <HBox alignment="CENTER_LEFT" layoutX="5.0" layoutY="238.0" prefHeight="48.0" prefWidth="391.0">
+                        <children>
+                           <TextField id="taskInput" fx:id="taskInput" prefHeight="42.0" prefWidth="337.0" promptText="Enter your desired task" styleClass="textField" stylesheets="@toDoUi.css">
+                              <font>
+                                 <Font size="18.0" />
+                              </font>
+                           </TextField>
+                           <Button fx:id="addTask" mnemonicParsing="false" onAction="#addTask" prefHeight="44.0" prefWidth="57.0">
+                              <graphic>
+                                 <ImageView id="addTask" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@Add%20New.png" />
+                                    </image>
+                                 </ImageView>
+                              </graphic>
+                           </Button>
+                        </children>
+                     </HBox>
+                     <HBox alignment="TOP_RIGHT" layoutX="4.0" layoutY="3.0" prefHeight="56.0" prefWidth="395.0">
+                        <children>
+                           <Label fx:id="appName" prefHeight="42.0" prefWidth="334.0" text="ToDo List App by Sarim v1.0" textFill="WHITE">
+                              <font>
+                                 <Font name="Arial Bold" size="18.0" />
+                              </font>
+                           </Label>
+                           <Button fx:id="minimize" mnemonicParsing="false" onAction="#minimize" prefHeight="7.0" prefWidth="0.0">
+                              <graphic>
+                                 <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@Minimize%20Window.png" />
+                                    </image>
+                                 </ImageView>
+                              </graphic>
+                           </Button>
+                           <Button fx:id="close" mnemonicParsing="false" onAction="#close" prefHeight="40.0" prefWidth="29.0">
+                              <graphic>
+                                 <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@Close%20Window.png" />
+                                    </image>
+                                 </ImageView>
+                              </graphic>
+                           </Button>
+                        </children>
+                     </HBox>
+                     <Label fx:id="lblStatus" alignment="CENTER" contentDisplay="CENTER" layoutX="2.0" layoutY="565.0" prefHeight="30.0" prefWidth="396.0" text="Label" textFill="WHITE">
+                        <font>
+                           <Font size="14.0" />
+                        </font></Label>
+                     <ScrollPane layoutX="6.0" layoutY="286.0" prefHeight="278.0" prefWidth="379.0" styleClass="scroll" stylesheets="@toDoUi.css">
+                        <content>
+                           <VBox id="tasksPane" fx:id="tasksPane" alignment="TOP_RIGHT" prefHeight="276.0" prefWidth="377.0" styleClass="tasksPane" stylesheets="@toDoUi.css" />
+                        </content>
+                     </ScrollPane>
+                  </children>
+               </AnchorPane>
+            </center>
+         </BorderPane>
+        </Scene>
+    </scene>
+</Stage>
