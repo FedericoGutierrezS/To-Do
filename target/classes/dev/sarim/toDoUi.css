@@ -17,9 +17,45 @@
 	-fx-background-color: #666;
 }
 
+/* Style for the scrollbar thumb (the draggable part) */
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #777777; /* Red color for the thumb */
+    -fx-background-insets: 2.0, 0.0, 0.0;
+    -fx-background-radius: 2em; /* Optional: for rounded corners */
+}
+
+/* Style for the scrollbar track (the background of the scrollbar) */
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track {
+    -fx-background-color: #444444; /* Light gray for the track */
+    -fx-background-insets: 0.0;
+    -fx-background-radius: 2em; /* Optional: for rounded corners */
+}
+
+/* Style for the scrollbar buttons (arrows) if visible */
+.scroll-bar:horizontal .increment-button,
+.scroll-bar:vertical .increment-button,
+.scroll-bar:horizontal .decrement-button,
+.scroll-bar:vertical .decrement-button {
+    -fx-background-color: transparent; /* Green color for buttons */
+    -fx-background-insets: 0.0;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: #333333; /* Dark background for the content */
+}
+
 .scroll{
-	-fx-opacity: 60;
-	-fx-background-color: #444444;
+    -fx-background-color: #444444; /* Darker gray for the corner */
+}
+
+.scroll-pane > .corner {
+    -fx-background-color: #444444; /* Darker gray for the corner */
+}
+
+.scroll-bar {
+    -fx-background-color: transparent; /* Makes the main scrollbar area transparent to style track/thumb */
 }
 
 .task{

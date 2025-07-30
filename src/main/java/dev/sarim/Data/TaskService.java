@@ -1,5 +1,7 @@
 package dev.sarim.Data;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +28,15 @@ public class TaskService {
 		int id = repo.getFirstIdByTitle(title);
 		Task t = new Task(id, title, TaskState.CLOSED);
 		repo.update(t);
+	}
+	
+	public List<Task> getAllTasks(){
+		return repo.getAll();
+	}
+
+	public void deleteTask(String title) {
+		Task t = repo.getFirstTaskByTitle(title);
+		repo.delete(t);
 	}
 
 }

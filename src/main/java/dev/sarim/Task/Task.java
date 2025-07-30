@@ -42,6 +42,9 @@ public class Task {
 		this.state = state;
 	}
 	
+	public Boolean taskClosed() {
+		return state == TaskState.CLOSED;
+	}
 	
 
 }

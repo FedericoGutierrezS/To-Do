@@ -1,5 +1,7 @@
 package dev.sarim.Data;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import dev.sarim.Task.Task;
@@ -28,5 +30,19 @@ public class TaskRepository {
 	
 	public void update(Task t) {
 		entityManager.merge(t);
+	}
+	
+	public List<Task> getAll(){
+		TypedQuery<Task> query = entityManager.createQuery("FROM Task", Task.class);
+		return query.getResultList();
+	}
+	
+	public Task getFirstTaskByTitle(String title) {
+		TypedQuery<Task> query = entityManager.createQuery("FROM Task AS t WHERE t.title = :title AND t.state = CLOSED", Task.class);
+		return query.setParameter("title", title).getResultList().get(0);
+	}
+	
+	public void delete(Task t) {
+		entityManager.remove(t);
 	}
 }

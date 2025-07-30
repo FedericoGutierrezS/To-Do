@@ -32,6 +32,7 @@ public class Main extends Application {
 		root.setWidth(400);
 		root.setTitle("ToDoApp");
 		root.initStyle(StageStyle.UNDECORATED);
+		uiController.loadTasks();
 		root.show();
 	}
 

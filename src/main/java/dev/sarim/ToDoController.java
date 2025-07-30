@@ -96,8 +96,7 @@ public class ToDoController{
 	private double yOffset = 0;
 
     @FXML
-    void initialize() {
-        
+    void initialize() {        
         lblStatus.setText("App ready.");
         bp.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
@@ -113,8 +112,58 @@ public class ToDoController{
                 primaryStage.setY(event.getScreenY() - yOffset);
             }
         });
-
+        
     }
+    
+    public void loadTasks() {
+    	taskServ.getAllTasks().stream().forEach(task -> addTask(task));
+    	doneOverTotal.setText("" + taskDoneCounter + "/" + taskTotalCounter);
+    }
+    
+    void addTask(Task t) {
+    	HBox hbox = new HBox();
+		 hbox.setPrefHeight(6);
+		 hbox.getStyleClass().add("task");
+		 hbox.setPrefWidth(Region.USE_COMPUTED_SIZE);
+		 hbox.setSpacing(5);
+		 hbox.setPadding(new Insets(9));
+		 hbox.setMinSize(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE);
+		 hbox.setMaxSize(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE);
+		 
+		 Text textco = new Text(t.getTitle());
+		 Label label = new Label();
+		 label.prefWidth(310);
+		 label.prefHeight(25);
+		 label.setMinWidth(278);
+		 textco.setFill(Color.WHITE);
+		 if(t.taskClosed()) {
+			 textco.setStrikethrough(true);
+			 textco.fillProperty().set(Color.GREY);
+			 taskDoneCounter++;
+		 }
+		 label.setGraphic(textco);
+		 textco.setFont(Font.font("Arial", FontWeight.BOLD, 13));
+		 
+		 Button btnDel = new Button();
+		 btnDel.prefHeight(32);
+		 btnDel.prefWidth(32);
+		 Image imageDel = new Image(getClass().getResourceAsStream("Remove.png"));
+		 ImageView imageViewDel = new ImageView(imageDel);
+		 imageViewDel.setFitHeight(32);
+		 imageViewDel.setFitWidth(32);
+		 btnDel.setGraphic(imageViewDel);
+		 btnDel.setOnAction(new EventHandler<ActionEvent>() {
+			    @Override
+			    public void handle(ActionEvent event) {
+			        deleteTask(event);
+			    }
+			});
+		 
+		 hbox.getChildren().addAll(label, btnDel);
+		 tasksPane.getChildren().addFirst(hbox);
+		 taskTotalCounter++;
+    }
+    
 	 @FXML
     void addTask(ActionEvent event) {
 		 String title = taskInput.getText();
@@ -132,7 +181,7 @@ public class ToDoController{
 			 
 			 Text textco = new Text(title);
 			 Label label = new Label();
-			 label.prefWidth(331);
+			 label.prefWidth(310);
 			 label.prefHeight(25);
 			 label.setMinWidth(278);
 			 
@@ -156,10 +205,12 @@ public class ToDoController{
 				});
 			 
 			 hbox.getChildren().addAll(label, btnDel);
-			 tasksPane.getChildren().add(hbox);
+			 tasksPane.getChildren().addFirst(hbox);
 			 Task newTask = new Task(title,TaskState.OPEN);
 			 taskServ.saveTask(newTask);
+			 taskTotalCounter++;
 			 lblStatus.setText("Task " + title + " created");
+			 doneOverTotal.setText("" + taskDoneCounter + "/" + taskTotalCounter);
 		 }
 		 
     }
@@ -181,6 +232,12 @@ public class ToDoController{
 	    	taskServ.closeTask(taskTxt.getText());
 	    	taskDoneCounter++;
 	    	doneOverTotal.setText("" + taskDoneCounter + "/" + taskTotalCounter);
+    	} else {
+    		((VBox)task.getParent()).getChildren().remove(task);
+    		taskDoneCounter--;
+    		taskTotalCounter--;
+    		doneOverTotal.setText("" + taskDoneCounter + "/" + taskTotalCounter);
+    		taskServ.deleteTask(taskTxt.getText());
     	}
     }
     
