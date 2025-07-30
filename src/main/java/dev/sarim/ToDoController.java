@@ -3,8 +3,10 @@ package dev.sarim;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
-
+import dev.sarim.Data.TaskRepository;
+import dev.sarim.Data.TaskService;
+import dev.sarim.Task.Task;
+import dev.sarim.Task.TaskState;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -26,8 +28,14 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class ToDoController{
+	
+	private TaskService taskServ;
 
-    @FXML
+	public void setTaskService(TaskService serv) {
+		this.taskServ = serv;
+	}
+
+	@FXML
     private ResourceBundle resources;
 
     @FXML
@@ -149,7 +157,8 @@ public class ToDoController{
 			 
 			 hbox.getChildren().addAll(label, btnDel);
 			 tasksPane.getChildren().add(hbox);
-			 
+			 Task newTask = new Task(title,TaskState.OPEN);
+			 taskServ.saveTask(newTask);
 			 lblStatus.setText("Task " + title + " created");
 		 }
 		 
