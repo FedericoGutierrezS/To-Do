@@ -31,7 +31,7 @@
                                  </Label>
                               </children>
                            </Pane>
-                           <Label id="OngoingTask" fx:id="OngoingTask" prefHeight="161.0" prefWidth="254.0" stylesheets="@toDoUi.css" text="Task Example Ongoing" textFill="WHITE">
+                           <Label id="OngoingTask" fx:id="OngoingTask" prefHeight="161.0" prefWidth="254.0" stylesheets="@toDoUi.css" text="Let's get it DONE!" textFill="WHITE">
                               <font>
                                  <Font name="Arial Bold" size="18.0" />
                               </font>

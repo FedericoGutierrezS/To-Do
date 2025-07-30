@@ -117,7 +117,7 @@ public class ToDoController{
     
     public void loadTasks() {
     	taskServ.getAllTasks().stream().forEach(task -> addTask(task));
-    	doneOverTotal.setText("" + taskDoneCounter + "/" + taskTotalCounter);
+    	updateDoneOverTotal();
     }
     
     void addTask(Task t) {
@@ -210,7 +210,7 @@ public class ToDoController{
 			 taskServ.saveTask(newTask);
 			 taskTotalCounter++;
 			 lblStatus.setText("Task " + title + " created");
-			 doneOverTotal.setText("" + taskDoneCounter + "/" + taskTotalCounter);
+			 updateDoneOverTotal();
 		 }
 		 
     }
@@ -218,6 +218,26 @@ public class ToDoController{
     @FXML
     void close(ActionEvent event) {
     	primaryStage.close();
+    }
+    
+    void updateDoneOverTotal() {
+    	doneOverTotal.setText("" + taskDoneCounter + "/" + taskTotalCounter);
+    	if(taskTotalCounter != 0) {
+	    	float doneProportion = (float)taskDoneCounter/(float)taskTotalCounter;
+	    	if(doneProportion == 1) { 
+	    		OngoingTask.setText("Nicely done!!");
+	    	} else if(doneProportion > 0.9) {
+	    		OngoingTask.setText("You are almost there!");
+	    	} else if( doneProportion > 0.5) {
+	    		OngoingTask.setText("Good work! Keep it up now");
+	    	} else if( doneProportion > 0.2) {
+	    		OngoingTask.setText("Let's keep this thing rolling!");
+	    	} else if( doneProportion > 0) {
+	    		OngoingTask.setText("You can do it!");
+	    	} else OngoingTask.setText("Shall we get this started?");
+    	} else {
+    		OngoingTask.setText("Add your first task");
+    	}
     }
 
     @FXML
@@ -231,12 +251,12 @@ public class ToDoController{
 	    	taskTxt.fillProperty().set(Color.GREY);
 	    	taskServ.closeTask(taskTxt.getText());
 	    	taskDoneCounter++;
-	    	doneOverTotal.setText("" + taskDoneCounter + "/" + taskTotalCounter);
+	    	updateDoneOverTotal();
     	} else {
     		((VBox)task.getParent()).getChildren().remove(task);
     		taskDoneCounter--;
     		taskTotalCounter--;
-    		doneOverTotal.setText("" + taskDoneCounter + "/" + taskTotalCounter);
+    		updateDoneOverTotal();
     		taskServ.deleteTask(taskTxt.getText());
     	}
     }
