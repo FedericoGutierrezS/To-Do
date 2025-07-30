@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import dev.sarim.Task.Task;
+import dev.sarim.Task.TaskState;
 
 @Service
 @Transactional
@@ -19,6 +20,12 @@ public class TaskService {
 	
 	public void saveTask(Task t) {
 		repo.saveTask(t);
+	}
+	
+	public void closeTask(String title) {
+		int id = repo.getFirstIdByTitle(title);
+		Task t = new Task(id, title, TaskState.CLOSED);
+		repo.update(t);
 	}
 
 }

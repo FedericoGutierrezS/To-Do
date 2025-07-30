@@ -11,6 +11,12 @@ public class Task {
 		this.title = title;
 		this.state = state;
 	}
+	
+	public Task(int id, String title, TaskState state) {
+		this.id = id;
+		this.title = title;
+		this.state = state;
+	}
 
 	public int getId() {
 		return id;

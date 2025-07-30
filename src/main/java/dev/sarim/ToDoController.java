@@ -178,6 +178,7 @@ public class ToDoController{
     	if(!taskTxt.isStrikethrough()) {
 	    	taskTxt.setStrikethrough(true);
 	    	taskTxt.fillProperty().set(Color.GREY);
+	    	taskServ.closeTask(taskTxt.getText());
 	    	taskDoneCounter++;
 	    	doneOverTotal.setText("" + taskDoneCounter + "/" + taskTotalCounter);
     	}

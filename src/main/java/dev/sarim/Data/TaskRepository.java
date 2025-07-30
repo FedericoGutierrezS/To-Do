@@ -20,4 +20,13 @@ public class TaskRepository {
 	public void saveTask(Task t) {	
 		entityManager.persist(t);
 	}
+	
+	public int getFirstIdByTitle(String title) {
+		TypedQuery<Task> query = entityManager.createQuery("FROM Task AS t WHERE t.title = :title AND t.state = OPEN", Task.class);
+		return query.setParameter("title", title).getResultList().get(0).getId();
+	}
+	
+	public void update(Task t) {
+		entityManager.merge(t);
+	}
 }
