@@ -33,7 +33,7 @@ public class TaskRepository {
 	}
 	
 	public List<Task> getAll(){
-		TypedQuery<Task> query = entityManager.createQuery("FROM Task", Task.class);
+		TypedQuery<Task> query = entityManager.createQuery("FROM Task ORDER BY state DESC", Task.class);
 		return query.getResultList();
 	}
 	

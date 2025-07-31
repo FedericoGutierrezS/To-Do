@@ -3,7 +3,6 @@ package dev.sarim;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import dev.sarim.Data.TaskRepository;
 import dev.sarim.Data.TaskService;
 import dev.sarim.Task.Task;
 import dev.sarim.Task.TaskState;
